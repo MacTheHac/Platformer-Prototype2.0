@@ -106,5 +106,10 @@ func update_direction() -> void:
 			sprite.flip_h = true   
 		elif direction.x > 0: #facing right
 			sprite.flip_h = false
-	
-	
+
+
+################################################################################
+func take_damage(damage: int) -> void:
+	globals.health -= damage
+	if globals.health > 0:
+		get_tree().reload_current_scene()

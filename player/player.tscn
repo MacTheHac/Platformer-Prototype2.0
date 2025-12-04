@@ -620,4 +620,7 @@ text = "State"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Camera2D" type="Camera2D" parent="StateLabel"]
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-20, -54)
+limit_left = 0
+limit_bottom = 256
