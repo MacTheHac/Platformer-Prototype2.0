@@ -619,3 +619,5 @@ theme_override_font_sizes/font_size = 10
 text = "State"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="StateLabel"]

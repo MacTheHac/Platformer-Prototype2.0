@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb8ql66c5ofoo"]
+
+[ext_resource type="Texture2D" uid="uid://wyxsvkh5a4w6" path="res://assets/userinterface/HealthUI.png" id="1_ne75i"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 480.0
+offset_bottom = 40.0
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="Sprite2D" parent="Panel/MarginContainer/HBoxContainer"]
+position = Vector2(435, 20)
+texture = ExtResource("1_ne75i")
+vframes = 7
