@@ -5,7 +5,7 @@ extends CharacterBody2D
 #endregion
 
 #region /// export vars
-@export var walk_speed: float = 150
+
 #endregion
 
 #region /// State Machine Variables

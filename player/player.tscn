@@ -1,9 +1,10 @@
-[gd_scene load_steps=29 format=3 uid="uid://c8hpailfjkdri"]
+[gd_scene load_steps=32 format=3 uid="uid://c8hpailfjkdri"]
 
 [ext_resource type="Texture2D" uid="uid://sq5jopnfg5j2" path="res://assets/player/Idle/Player Idle 48x48.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://b6fuis615cayt" path="res://player/player.gd" id="1_rkbax"]
 [ext_resource type="Script" uid="uid://6l20hy68lo4" path="res://player/states/01_idle_state.gd" id="2_g1dw6"]
 [ext_resource type="Script" uid="uid://cqw03ehp8q21" path="res://player/states/02_walk_state.gd" id="3_qjkh3"]
+[ext_resource type="Script" uid="uid://cvnx3bw218s62" path="res://player/states/03_jump_state.gd" id="4_wodsf"]
 [ext_resource type="Texture2D" uid="uid://q3q3y62cuw7x" path="res://assets/player/Walk/PlayerWalk 48x48.png" id="5_g6k8r"]
 [ext_resource type="Texture2D" uid="uid://dmxrs7wuhffal" path="res://assets/player/Dash/dash.png" id="6_kb6p2"]
 [ext_resource type="Texture2D" uid="uid://xdjuqiignr0a" path="res://assets/player/Pull/Player Pull 48x48.png" id="7_wodsf"]
@@ -14,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://vjmddfd35ffb" path="res://assets/player/Roll/Player Roll 48x48.png" id="12_65viv"]
 [ext_resource type="Texture2D" uid="uid://ncit312wfnkn" path="res://assets/player/Shooting (two-handed)/player shoot 2H 48x48.png" id="13_x7c3f"]
 [ext_resource type="Texture2D" uid="uid://bj0qeog5qkyyg" path="res://assets/player/Slide/Player Slide 48x48.png" id="14_bjvpn"]
+[ext_resource type="Texture2D" uid="uid://5akui3r4epq6" path="res://assets/player/Jump/player jump 48x48.png" id="16_32hag"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rkbax"]
 radius = 6.0
@@ -507,11 +509,52 @@ tracks/2/keys = {
 "values": [8]
 }
 
+[sub_resource type="Animation" id="Animation_tqiix"]
+resource_name = "jump"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_32hag")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g6k8r"]
 _data = {
 &"RESET": SubResource("Animation_qjkh3"),
 &"dash": SubResource("Animation_s7qer"),
 &"idle": SubResource("Animation_yw30f"),
+&"jump": SubResource("Animation_tqiix"),
 &"pull": SubResource("Animation_g4c7l"),
 &"punch": SubResource("Animation_knn7v"),
 &"punch_cross": SubResource("Animation_7pqkx"),
@@ -539,6 +582,11 @@ unique_name_in_owner = true
 script = ExtResource("3_qjkh3")
 metadata/_custom_type_script = "uid://ba0fx853bgmrc"
 
+[node name="Jump" type="Node" parent="States"]
+unique_name_in_owner = true
+script = ExtResource("4_wodsf")
+metadata/_custom_type_script = "uid://ba0fx853bgmrc"
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(5, -16)
@@ -546,7 +594,6 @@ texture = ExtResource("1_oul6g")
 hframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, -15)
 shape = SubResource("CapsuleShape2D_rkbax")
 
