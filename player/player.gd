@@ -5,14 +5,14 @@ extends CharacterBody2D
 #endregion
 
 #region /// export vars
-
+@export var move_speed: float = 150.0
 #endregion
 
 #region /// State Machine Variables
 var states: Array[PlayerState]
 var current_state: PlayerState:
 	get: return states.front()
-var privios_state: PlayerState:
+var previous_state: PlayerState:
 	get: return states[1]
 #endregion
 

@@ -21,6 +21,7 @@ var next_state: PlayerState = null
 @onready var idle: PlayerState = %Idle
 @onready var walk: Node = %Walk
 @onready var jump: PlayerState = %Jump
+@onready var fall: PlayerState = %Fall
 #endregion
 
 # What happens when this state is initiialzed?

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://c8hpailfjkdri"]
+[gd_scene load_steps=33 format=3 uid="uid://c8hpailfjkdri"]
 
 [ext_resource type="Texture2D" uid="uid://sq5jopnfg5j2" path="res://assets/player/Idle/Player Idle 48x48.png" id="1_oul6g"]
 [ext_resource type="Script" uid="uid://b6fuis615cayt" path="res://player/player.gd" id="1_rkbax"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://cqw03ehp8q21" path="res://player/states/02_walk_state.gd" id="3_qjkh3"]
 [ext_resource type="Script" uid="uid://cvnx3bw218s62" path="res://player/states/03_jump_state.gd" id="4_wodsf"]
 [ext_resource type="Texture2D" uid="uid://q3q3y62cuw7x" path="res://assets/player/Walk/PlayerWalk 48x48.png" id="5_g6k8r"]
+[ext_resource type="Script" uid="uid://civyxpufvhx7x" path="res://player/states/04_fall_state.gd" id="5_tqiix"]
 [ext_resource type="Texture2D" uid="uid://dmxrs7wuhffal" path="res://assets/player/Dash/dash.png" id="6_kb6p2"]
 [ext_resource type="Texture2D" uid="uid://xdjuqiignr0a" path="res://assets/player/Pull/Player Pull 48x48.png" id="7_wodsf"]
 [ext_resource type="Texture2D" uid="uid://wiv5bxqe7sav" path="res://assets/player/Punch/Player Punch 64x64.png" id="8_32hag"]
@@ -139,6 +140,46 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [10]
+}
+
+[sub_resource type="Animation" id="Animation_tqiix"]
+resource_name = "jump"
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("16_32hag")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
 }
 
 [sub_resource type="Animation" id="Animation_g4c7l"]
@@ -509,46 +550,6 @@ tracks/2/keys = {
 "values": [8]
 }
 
-[sub_resource type="Animation" id="Animation_tqiix"]
-resource_name = "jump"
-step = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("16_32hag")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.7, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_g6k8r"]
 _data = {
 &"RESET": SubResource("Animation_qjkh3"),
@@ -568,7 +569,6 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_rkbax")
-metadata/_edit_group_ = true
 
 [node name="States" type="Node" parent="."]
 
@@ -585,6 +585,11 @@ metadata/_custom_type_script = "uid://ba0fx853bgmrc"
 [node name="Jump" type="Node" parent="States"]
 unique_name_in_owner = true
 script = ExtResource("4_wodsf")
+metadata/_custom_type_script = "uid://ba0fx853bgmrc"
+
+[node name="Fall" type="Node" parent="States"]
+unique_name_in_owner = true
+script = ExtResource("5_tqiix")
 metadata/_custom_type_script = "uid://ba0fx853bgmrc"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -610,5 +615,7 @@ offset_left = -20.0
 offset_top = -54.0
 offset_right = 20.0
 offset_bottom = -31.0
+theme_override_font_sizes/font_size = 10
 text = "State"
 horizontal_alignment = 1
+vertical_alignment = 1
