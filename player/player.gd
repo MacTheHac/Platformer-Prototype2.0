@@ -99,7 +99,7 @@ func update_direction() -> void:
 	var x_axis = Input.get_axis("left", "right")
 	var y_axis = Input.get_axis("up", "down")
 	direction = Vector2(x_axis, y_axis)
-	
+	 
 	
 	if previous_direction.x != direction.x: # directions.x has changed
 		if direction.x < 0: # facing left
